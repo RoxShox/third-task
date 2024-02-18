@@ -1,21 +1,21 @@
-// function serverAuth() {
-// 	const inputServer = document.querySelector(".form__input-server")
-// 	const inputLogin = document.querySelector(".form__input-login")
-// 	const inputPassword = document.querySelector(".form__input-password")
-// 	const submitBtn = document.querySelector(".btn__submit")
-// 	submitBtn.addEventListener("click", submitForm)
-// 	function submitForm(e) {
-// 		e.preventDefault()
-// 		const server = inputServer.value
-// 		const uri = `sip:${inputLogin.value}@${inputServer.value}`
-// 		const password = inputPassword.value
-// 		callUser(server, password, uri)
-// 		inputServer.value = ""
-// 		inputLogin.value = ""
-// 		inputPassword.value = ""
-// 	}
-// }
-// serverAuth()
+function serverAuth() {
+	const inputServer = document.querySelector(".form__input-server")
+	const inputLogin = document.querySelector(".form__input-login")
+	const inputPassword = document.querySelector(".form__input-password")
+	const submitBtn = document.querySelector(".btn__submit")
+	submitBtn.addEventListener("click", submitForm)
+	function submitForm(e) {
+		e.preventDefault()
+		const server = inputServer.value
+		const uri = `sip:${inputLogin.value}@${inputServer.value}`
+		const password = inputPassword.value
+		callUser(server, password, uri)
+		inputServer.value = ""
+		inputLogin.value = ""
+		inputPassword.value = ""
+	}
+}
+serverAuth()
 
 function callUser(server, password, uri) {
 	const callBtn = document.getElementById("call")
@@ -48,19 +48,19 @@ function callUser(server, password, uri) {
 			.padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`
 	}
 
-	// JsSIP.debug.enable("JsSIP:*")
-	// let socket = new JsSIP.WebSocketInterface(`wss://${server}`)
-	// let configuration = {
-	// 	sockets: [socket],
-	// 	uri,
-	// 	password: password,
-	// }
-	let socket = new JsSIP.WebSocketInterface(`wss://voip.uiscom.ru`)
+	JsSIP.debug.enable("JsSIP:*")
+	let socket = new JsSIP.WebSocketInterface(`wss://${server}`)
 	let configuration = {
 		sockets: [socket],
-		uri: "sip:0332154@voip.uiscom.ru",
-		password: "_P7XYUBDwz",
+		uri,
+		password: password,
 	}
+	// let socket = new JsSIP.WebSocketInterface(`wss://voip.uiscom.ru`)
+	// let configuration = {
+	// 	sockets: [socket],
+	// 	uri: "sip:0332154@voip.uiscom.ru",
+	// 	password: "_P7XYUBDwz",
+	// }
 
 	let remoteAudio = new window.Audio()
 	remoteAudio.autoplay = true
@@ -125,8 +125,11 @@ function callUser(server, password, uri) {
 	}
 
 	function callHistoryNum(e) {
-		if (e.target.closest(".call__history-item")) {
-			const historyNumValue = e.target.textContent
+		console.log(e.target.tagName)
+		if (e.target.closest(".call__history-item") || e.target.tagName == "IMG") {
+			const historyNumValue =
+				e.target.textContent ||
+				e.target.closest(".call__history-item").textContent
 			callNumber(e, historyNumValue)
 		}
 	}
@@ -184,5 +187,3 @@ function callUser(server, password, uri) {
 		$("#hangup").css({ display: "none" })
 	})
 }
-
-callUser()
