@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="styles/style.css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="/lib/jssip-3.10.0.min.js"></script>
+	</head>
+	<body>
+		<div class="wrap">
+			<form action="" class="form">
+				<label for="" class="form__label">
+					<span>Сервер</span>
+					<input
+						class="form__input form__input-server"
+						name="server"
+						type="text"
+						placeholder="Введите сервер"
+					/>
+				</label>
+				<label for="" class="form__label">
+					<span>Логин</span>
+					<input
+						class="form__input form__input-login"
+						name="login"
+						type="text"
+						placeholder="Введите логин"
+					/>
+				</label>
+				<label for="" class="form__label">
+					<span>Пароль</span>
+					<input
+						class="form__input form__input-password"
+						name="password"
+						type="password"
+						placeholder="Введите пароль"
+					/>
+				</label>
+				<button class="btn__submit">Войти</button>
+			</form>
+			<div id="callControl">
+				<h2>Web Sip клиент на основе JsSIP</h2>
+				<div id="to">
+					<input id="num" type="text" placeholder="Введите номер телефона" />
+				</div>
+				<div class="call__user"></div>
+				<div class="call__status"></div>
+				<h1 id="timer" class="hide">00:00:00</h1>
+
+				<div id="call">Вызов</div>
+				<div id="hangup">Завершить</div>
+			</div>
+			<div>
+				<h3>История звонков</h3>
+				<div class="call__history-wrap"></div>
+			</div>
+		</div>
+
+		<script src="js/scripts.js"></script>
+	</body>
+</html>
